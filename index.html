@@ -33,7 +33,7 @@ h1{font:clamp(40px,6vw,68px)/1.02 Georgia,serif;margin:15px 0;color:#fff}.hero p
 .cat:hover,.product:hover{transform:translateY(-3px);box-shadow:0 10px 25px #39151b12}.cat .emoji{font-size:34px;display:block;margin-bottom:10px}.cat strong{font-size:13px}
 .products{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}
 .product{border:1px solid #eee4e1;border-radius:16px;overflow:hidden;background:white;transition:.2s;display:flex;flex-direction:column}
-.product-art{height:180px;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,#fff8e8,#f2e3d9);font-size:76px;position:relative}
+.product-art{height:210px;display:block;position:relative;background:#f4e9df;overflow:hidden}.product-art img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s}.product:hover .product-art img{transform:scale(1.04)}
 .tag{position:absolute;top:12px;left:12px;background:var(--red);color:#fff;border-radius:20px;padding:6px 9px;font-size:10px;font-weight:700}
 .product-info{padding:15px;display:flex;flex-direction:column;flex:1}.product-info h3{font-size:14px;margin:0 0 8px}.desc{font-size:12px;color:var(--muted);line-height:1.5;min-height:36px}.price{font-size:19px;font-weight:800;color:var(--red);margin:12px 0}.product .btn{width:100%;font-size:12px;padding:11px;margin-top:auto}
 .banner{background:linear-gradient(100deg,#174b37,#24664a);border-radius:18px;color:#fff;padding:30px;margin:10px 0 48px;display:flex;justify-content:space-between;align-items:center;gap:20px}.banner h2{color:#f3d99b;margin:0 0 8px}.banner p{margin:0;color:#e7eee8;font-size:14px}
@@ -68,7 +68,7 @@ footer{background:#2c171d;color:#f8eeee;padding:35px 20px;text-align:center}foot
 <div class="categories">
 <a class="cat" href="#produtos"><span class="emoji">🎄</span><strong>Árvores de Natal</strong></a><a class="cat" href="#produtos"><span class="emoji">🔴</span><strong>Bolas e enfeites</strong></a><a class="cat" href="#produtos"><span class="emoji">💡</span><strong>Luzes e pisca-piscas</strong></a><a class="cat" href="#produtos"><span class="emoji">🌟</span><strong>Guirlandas e decoração</strong></a>
 </div></section>
-<section class="section" id="produtos"><div class="section-head"><div class="eyebrow">Escolhas especiais</div><h2>Nossos destaques</h2><p>Produtos demonstrativos — personalize nomes, fotos e preços antes de divulgar.</p></div>
+<section class="section" id="produtos"><div class="section-head"><div class="eyebrow">Escolhas especiais</div><h2>Nossos destaques</h2><p>Fotos ilustrativas de referência. Confira o produto real, disponibilidade e preço com a loja antes de comprar.</p></div>
 <div class="products" id="productGrid"></div></section>
 <section class="banner"><div><h2>Deixe a magia entrar!</h2><p>Precisa de ajuda para escolher? Fale com a gente.</p></div><a class="btn gold" href="https://wa.me/5511947906480" target="_blank" rel="noopener">Falar no WhatsApp</a></section>
 </div></main>
@@ -80,14 +80,14 @@ footer{background:#2c171d;color:#f8eeee;padding:35px 20px;text-align:center}foot
 </aside></div>
 <script>
 const products=[
-{id:1,name:"Árvore de Natal Clássica",desc:"Um toque tradicional para sua decoração.",price:189.90,emoji:"🎄",tag:"Destaque"},
-{id:2,name:"Kit de Bolas Douradas",desc:"Brilho e elegância para sua árvore.",price:39.90,emoji:"🔴",tag:"Mais vendido"},
-{id:3,name:"Cordão de Luzes LED",desc:"Iluminação aconchegante para celebrar.",price:29.90,emoji:"💡",tag:"Especial"},
-{id:4,name:"Guirlanda Natalina",desc:"Boas-vindas com muito espírito natalino.",price:59.90,emoji:"🌟",tag:"Encantador"}
+{id:1,name:"Árvore de Natal Decorada",desc:"Inspiração clássica em vermelho e dourado para sua decoração.",price:189.90,emoji:"🎄",tag:"Destaque",img:"https://images.unsplash.com/photo-1766006666411-a69c3229a4b1?auto=format&fit=crop&w=900&q=85"},
+{id:2,name:"Enfeites Natalinos Vermelho e Dourado",desc:"Detalhes brilhantes para deixar sua árvore ainda mais especial.",price:39.90,emoji:"🔴",tag:"Mais vendido",img:"https://images.pexels.com/photos/364667/pexels-photo-364667.jpeg?auto=compress&cs=tinysrgb&w=900"},
+{id:3,name:"Cordão de Luzes LED",desc:"Luz quentinha para criar um clima acolhedor no Natal.",price:29.90,emoji:"💡",tag:"Especial",img:"https://images.pexels.com/photos/799584/pexels-photo-799584.jpeg?auto=compress&cs=tinysrgb&w=900"},
+{id:4,name:"Guirlanda Natalina Vermelha e Dourada",desc:"Uma recepção encantadora para sua casa e seus convidados.",price:59.90,emoji:"🌟",tag:"Encantador",img:"https://images.pexels.com/photos/6218714/pexels-photo-6218714.jpeg?auto=compress&cs=tinysrgb&w=900"}
 ];
 let cart=[];
 const money=n=>n.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
-function renderProducts(){document.getElementById("productGrid").innerHTML=products.map(p=>`<article class="product"><div class="product-art"><span class="tag">${p.tag}</span>${p.emoji}</div><div class="product-info"><h3>${p.name}</h3><div class="desc">${p.desc}</div><div class="price">${money(p.price)}</div><button class="btn" onclick="add(${p.id})">Adicionar ao carrinho</button></div></article>`).join("")}
+function renderProducts(){document.getElementById("productGrid").innerHTML=products.map(p=>`<article class="product"><div class="product-art"><span class="tag">${p.tag}</span><img src="${p.img}" alt="${p.name} — foto ilustrativa" loading="lazy" onerror="this.style.display='none';this.parentElement.insertAdjacentText('beforeend','${p.emoji}')"></div><div class="product-info"><h3>${p.name}</h3><div class="desc">${p.desc}</div><div class="price">${money(p.price)}</div><button class="btn" onclick="add(${p.id})">Adicionar ao carrinho</button></div></article>`).join("")}
 function add(id){const item=cart.find(x=>x.id===id);if(item)item.qty++;else cart.push({...products.find(x=>x.id===id),qty:1});renderCart();openCart()}
 function removeItem(id){cart=cart.filter(x=>x.id!==id);renderCart()}
 function renderCart(){document.getElementById("count").textContent=cart.reduce((s,x)=>s+x.qty,0);document.getElementById("cartItems").innerHTML=cart.length?cart.map(x=>`<div class="cartline"><span>${x.emoji} ${x.name}<br>Qtd: ${x.qty} • ${money(x.price*x.qty)}</span><button onclick="removeItem(${x.id})">Remover</button></div>`).join(""):"<p>Seu carrinho está vazio. Escolha seus produtos favoritos!</p>";document.getElementById("total").textContent=money(cart.reduce((s,x)=>s+x.price*x.qty,0))}
