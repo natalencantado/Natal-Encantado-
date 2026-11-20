@@ -19,15 +19,15 @@
 <script>
 const WHATS='5511947906480'; const PIX='fb8b6e0e-93f6-43ef-bd9d-c9f99582504f';
 const products=[
-{name:'Árvore de Natal — 60 cm',desc:'Compacta para mesas, aparadores e pequenos ambientes.',price:34.90,tag:'Oferta econômica',group:'tree',img:'assets/arvore-60.jpg'},
-{name:'Árvore de Natal — 90 cm',desc:'Um toque natalino para espaços menores.',price:49.90,tag:'Preço especial',group:'tree',img:'assets/arvore-90.jpg'},
-{name:'Árvore de Natal — 1,20 m',desc:'Ideal para salas compactas e apartamentos.',price:79.90,tag:'Mais procurada',group:'tree',img:'assets/arvore-120.jpg'},
-{name:'Árvore de Natal — 1,50 m',desc:'Tamanho versátil para decorar sua casa.',price:119.90,tag:'Oferta especial',group:'tree',img:'assets/arvore-150.jpg'},
-{name:'Árvore de Natal — 1,80 m',desc:'Destaque para sua sala e decoração natalina.',price:179.90,tag:'Destaque',group:'tree',img:'assets/arvore-180.jpg'},
-{name:'Árvore de Natal — 2,10 m',desc:'Modelo alto para ambientes amplos.',price:269.90,tag:'Grande porte',group:'tree',img:'assets/arvore-210.jpg'},
-{name:'Kit 24 bolas de Natal',desc:'Bolas decorativas em vermelho e dourado.',price:24.90,tag:'Acessório',group:'accessory',img:'assets/kit-bolas.jpg'},
-{name:'Pisca-pisca LED',desc:'Fio de luzes LED branco quente para decorar.',price:29.90,tag:'Acessório',group:'accessory',img:'assets/pisca-pisca.jpg'},
-{name:'Ponteira estrela dourada',desc:'Finalize sua árvore com brilho e tradição.',price:16.90,tag:'Acessório',group:'accessory',img:'assets/ponteira.jpg'}
+{name:'Árvore de Natal — 60 cm',desc:'Compacta para mesas, aparadores e pequenos ambientes.',price:34.90,tag:'Oferta econômica',group:'tree',img:'arvore-60.jpg'},
+{name:'Árvore de Natal — 90 cm',desc:'Um toque natalino para espaços menores.',price:49.90,tag:'Preço especial',group:'tree',img:'arvore-90.jpg'},
+{name:'Árvore de Natal — 1,20 m',desc:'Ideal para salas compactas e apartamentos.',price:79.90,tag:'Mais procurada',group:'tree',img:'arvore-120.jpg'},
+{name:'Árvore de Natal — 1,50 m',desc:'Tamanho versátil para decorar sua casa.',price:119.90,tag:'Oferta especial',group:'tree',img:'arvore-150.jpg'},
+{name:'Árvore de Natal — 1,80 m',desc:'Destaque para sua sala e decoração natalina.',price:179.90,tag:'Destaque',group:'tree',img:'arvore-180.jpg'},
+{name:'Árvore de Natal — 2,10 m',desc:'Modelo alto para ambientes amplos.',price:269.90,tag:'Grande porte',group:'tree',img:'arvore-210.jpg'},
+{name:'Kit 24 bolas de Natal',desc:'Bolas decorativas em vermelho e dourado.',price:24.90,tag:'Acessório',group:'accessory',img:'kit-bolas.jpg'},
+{name:'Pisca-pisca LED',desc:'Fio de luzes LED branco quente para decorar.',price:29.90,tag:'Acessório',group:'accessory',img:'pisca-pisca.jpg'},
+{name:'Ponteira estrela dourada',desc:'Finalize sua árvore com brilho e tradição.',price:16.90,tag:'Acessório',group:'accessory',img:'ponteira.jpg'}
 ];
 let cart={};const brl=n=>n.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
 function renderProducts(target,group){document.getElementById(target).innerHTML=products.map((p,i)=>({p,i})).filter(x=>x.p.group===group).map(({p,i})=>`<article class="product"><img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.onerror=null;this.src='assets/arvore-180.jpg'"><div class="info"><span class="tag">${p.tag}</span><h3>${p.name}</h3><p>${p.desc}</p><div class="price">${brl(p.price)}</div><div class="installment">Preço promocional sugerido • PIX</div><button onclick="add(${i})">Adicionar ao carrinho</button></div></article>`).join('')}
