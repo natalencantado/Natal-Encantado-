@@ -33,9 +33,9 @@ h1{font:clamp(40px,6vw,68px)/1.02 Georgia,serif;margin:15px 0;color:#fff}.hero p
 .cat:hover,.product:hover{transform:translateY(-3px);box-shadow:0 10px 25px #39151b12}.cat .emoji{font-size:34px;display:block;margin-bottom:10px}.cat strong{font-size:13px}
 .products{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}
 .product{border:1px solid #eee4e1;border-radius:16px;overflow:hidden;background:white;transition:.2s;display:flex;flex-direction:column}
-.product-art{height:210px;display:block;position:relative;background:#f4e9df;overflow:hidden}.product-art img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s}.product:hover .product-art img{transform:scale(1.04)}
+.product-art{height:210px;display:block;position:relative;background:#f4e9df;overflow:hidden;cursor:pointer}.product-art img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .35s}.product:hover .product-art img{transform:scale(1.04)}
 .tag{position:absolute;top:12px;left:12px;background:var(--red);color:#fff;border-radius:20px;padding:6px 9px;font-size:10px;font-weight:700}
-.product-info{padding:15px;display:flex;flex-direction:column;flex:1}.product-info h3{font-size:14px;margin:0 0 8px}.desc{font-size:12px;color:var(--muted);line-height:1.5;min-height:36px}.price{font-size:19px;font-weight:800;color:var(--red);margin:12px 0}.product .btn{width:100%;font-size:12px;padding:11px;margin-top:auto}
+.product-info{padding:15px;display:flex;flex-direction:column;flex:1}.product-info h3{font-size:14px;margin:0 0 8px;cursor:pointer}.desc{font-size:12px;color:var(--muted);line-height:1.5;min-height:36px}.price{font-size:19px;font-weight:800;color:var(--red);margin:12px 0}.product .btn{width:100%;font-size:12px;padding:11px;margin-top:8px}.details-link{border:0;background:none;color:var(--red);font-weight:700;font-size:12px;padding:9px;cursor:pointer}
 .banner{background:linear-gradient(100deg,#174b37,#24664a);border-radius:18px;color:#fff;padding:30px;margin:10px 0 48px;display:flex;justify-content:space-between;align-items:center;gap:20px}.banner h2{color:#f3d99b;margin:0 0 8px}.banner p{margin:0;color:#e7eee8;font-size:14px}
 footer{background:#2c171d;color:#f8eeee;padding:35px 20px;text-align:center}footer strong{font:24px Georgia,serif;color:#f0cf8a}footer p{font-size:12px;color:#d7c5c8;line-height:1.7}
 .overlay{position:fixed;inset:0;background:#160b0dcc;z-index:30;display:none}.overlay.show{display:block}.drawer{position:absolute;right:0;top:0;height:100%;width:min(430px,100%);background:#fff;padding:22px;overflow:auto}
@@ -43,8 +43,13 @@ footer{background:#2c171d;color:#f8eeee;padding:35px 20px;text-align:center}foot
 .cartline{display:flex;justify-content:space-between;gap:12px;padding:15px 0;border-bottom:1px solid #eee;font-size:13px}.cartline button{border:0;background:none;color:var(--red);cursor:pointer}.total{display:flex;justify-content:space-between;font-size:18px;font-weight:800;margin:20px 0}
 .checkout label{display:block;font-size:12px;font-weight:700;margin:12px 0 5px}.checkout input,.checkout textarea,.checkout select{width:100%;padding:12px;border:1px solid #ddd;border-radius:9px;font:14px Arial}.checkout .btn{width:100%;margin-top:15px}
 .notice{font-size:11px;color:var(--muted);line-height:1.5;margin-top:10px}
-@media(max-width:800px){nav{display:none}.products{grid-template-columns:repeat(2,1fr)}.categories{grid-template-columns:repeat(2,1fr)}.hero-inner{min-height:350px;padding:48px 20px}.benefits{grid-template-columns:1fr}.banner{align-items:flex-start;flex-direction:column}}
-@media(max-width:390px){.brand strong{font-size:18px}.cartbtn{padding:10px 12px}.product-art{height:145px}}
+.product-modal{position:fixed;inset:0;background:#160b0dcc;z-index:50;display:none;align-items:center;justify-content:center;padding:16px}.product-modal.show{display:flex}
+.modal-card{background:#fff;border-radius:18px;width:min(900px,100%);max-height:92vh;overflow:auto;position:relative;display:grid;grid-template-columns:1.05fr 1fr}
+.modal-close{position:absolute;right:12px;top:12px;z-index:2;border:0;background:#fff;border-radius:50%;width:38px;height:38px;font-size:24px;cursor:pointer;box-shadow:0 2px 12px #0002}
+.gallery{padding:18px;background:#faf6f1}.gallery-main{width:100%;height:390px;object-fit:cover;border-radius:12px;background:#eee}.thumbs{display:flex;gap:9px;margin-top:10px;overflow-x:auto}.thumbs button{border:2px solid transparent;border-radius:9px;padding:0;width:76px;height:70px;flex:0 0 76px;overflow:hidden;background:none;cursor:pointer}.thumbs button.active{border-color:var(--red)}.thumbs img{width:100%;height:100%;object-fit:cover}
+.modal-info{padding:38px 30px;align-self:center}.modal-info h2{font-size:30px;line-height:1.15;margin:10px 0}.modal-info p{color:var(--muted);line-height:1.7;font-size:14px}.modal-price{font-size:27px;font-weight:800;color:var(--red);margin:18px 0}.qty-row{display:flex;align-items:center;gap:12px;margin:18px 0}.qty-row button{width:36px;height:36px;border:1px solid #ddd;border-radius:50%;background:#fff;font-size:20px;cursor:pointer}.qty-row span{font-weight:800;min-width:20px;text-align:center}.modal-info .btn{width:100%}.photo-note{font-size:11px!important;color:#8b7e80!important;margin-top:14px}
+@media(max-width:800px){nav{display:none}.products{grid-template-columns:repeat(2,1fr)}.categories{grid-template-columns:repeat(2,1fr)}.hero-inner{min-height:350px;padding:48px 20px}.benefits{grid-template-columns:1fr}.banner{align-items:flex-start;flex-direction:column}.modal-card{grid-template-columns:1fr}.gallery-main{height:290px}.modal-info{padding:22px}.product-modal{align-items:flex-start;overflow:auto}.modal-card{max-height:none;margin:auto}}
+@media(max-width:390px){.brand strong{font-size:18px}.cartbtn{padding:10px 12px}.product-art{height:145px}.gallery-main{height:240px}}
 </style>
 </head>
 <body>
@@ -58,7 +63,7 @@ footer{background:#2c171d;color:#f8eeee;padding:35px 20px;text-align:center}foot
 <section class="hero" id="inicio"><div class="hero-inner"><div class="hero-copy">
 <div class="eyebrow">Uma temporada cheia de encanto</div>
 <h1>Seu Natal merece ser mágico.</h1>
-<p>Encontre os detalhes que transformam sua casa em um cenário especial. Escolha seus favoritos e prepare-se para celebrar!</p>
+<p>Árvores, luzes, enfeites, mesa posta e presentes para transformar sua casa. Encontre seus favoritos e prepare-se para celebrar!</p>
 <div class="hero-actions"><a class="btn gold" href="#produtos">Comprar agora ✨</a><a class="btn outline" href="#categorias">Explorar categorias</a></div>
 </div></div></section>
 <div class="wrap"><div class="benefits">
@@ -66,34 +71,58 @@ footer{background:#2c171d;color:#f8eeee;padding:35px 20px;text-align:center}foot
 </div>
 <section class="section" id="categorias"><div class="section-head"><div class="eyebrow">Encontre o que procura</div><h2>Explore nossas categorias</h2><p>Inspire-se e deixe cada cantinho no clima do Natal.</p></div>
 <div class="categories">
-<a class="cat" href="#produtos"><span class="emoji">🎄</span><strong>Árvores de Natal</strong></a><a class="cat" href="#produtos"><span class="emoji">🔴</span><strong>Bolas e enfeites</strong></a><a class="cat" href="#produtos"><span class="emoji">💡</span><strong>Luzes e pisca-piscas</strong></a><a class="cat" href="#produtos"><span class="emoji">🌟</span><strong>Guirlandas e decoração</strong></a>
+<a class="cat" href="#produtos"><span class="emoji">🎄</span><strong>Árvores e mini árvores</strong></a>
+<a class="cat" href="#produtos"><span class="emoji">🔴</span><strong>Bolas, laços e enfeites</strong></a>
+<a class="cat" href="#produtos"><span class="emoji">💡</span><strong>Pisca-piscas e LED</strong></a>
+<a class="cat" href="#produtos"><span class="emoji">🌟</span><strong>Guirlandas e festões</strong></a>
+<a class="cat" href="#produtos"><span class="emoji">🕊️</span><strong>Presépios e Papai Noel</strong></a>
+<a class="cat" href="#produtos"><span class="emoji">🍽️</span><strong>Mesa posta</strong></a>
+<a class="cat" href="#produtos"><span class="emoji">🛋️</span><strong>Casa e decoração</strong></a>
+<a class="cat" href="#produtos"><span class="emoji">🎁</span><strong>Presentes e embalagens</strong></a>
 </div></section>
-<section class="section" id="produtos"><div class="section-head"><div class="eyebrow">Escolhas especiais</div><h2>Nossos destaques</h2><p>Fotos ilustrativas de referência. Confira o produto real, disponibilidade e preço com a loja antes de comprar.</p></div>
+<section class="section" id="produtos"><div class="section-head"><div class="eyebrow">Escolhas especiais</div><h2>Nossos destaques</h2><p>Mais opções para decorar, iluminar, presentear e montar sua ceia. Preços dos novos itens sob consulta.</p></div>
 <div class="products" id="productGrid"></div></section>
 <section class="banner"><div><h2>Deixe a magia entrar!</h2><p>Precisa de ajuda para escolher? Fale com a gente.</p></div><a class="btn gold" href="https://wa.me/5511947906480" target="_blank" rel="noopener">Falar no WhatsApp</a></section>
 </div></main>
 <footer id="contato"><strong>✦ Natal Encantado ✦</strong><p>O encanto do Natal começa aqui.<br>Atendimento: (11) 94790-6480<br>© <span id="year"></span> Natal Encantado</p></footer>
+
 <div class="overlay" id="overlay" onclick="if(event.target===this)closeCart()"><aside class="drawer">
 <div class="drawer-head"><h2>Seu carrinho</h2><button class="close" onclick="closeCart()">×</button></div>
 <div id="cartItems"></div><div class="total"><span>Total</span><span id="total">R$ 0,00</span></div>
-<div class="checkout"><h3>Dados para o pedido</h3><label for="customer">Seu nome</label><input id="customer" placeholder="Nome completo"><label for="phone">Telefone</label><input id="phone" placeholder="(11) 99999-9999"><label for="address">Endereço de entrega</label><textarea id="address" rows="2" placeholder="Rua, número, bairro e cidade"></textarea><label for="payment">Forma de pagamento</label><select id="payment"><option>Pix (confirmar instruções com a loja)</option><option>Cartão — solicitar link de pagamento</option><option>Boleto — solicitar link de pagamento</option></select><button class="btn" onclick="sendOrder()">Enviar pedido pelo WhatsApp</button><p class="notice">O pedido será enviado pelo WhatsApp para confirmação. O site ainda não processa pagamentos nem confirma estoque automaticamente. Não informe dados de cartão neste site.</p></div>
+<div class="checkout"><h3>Dados para o pedido</h3><label for="customer">Seu nome</label><input id="customer" placeholder="Nome completo"><label for="phone">Telefone</label><input id="phone" placeholder="(11) 99999-9999"><label for="address">Endereço de entrega</label><textarea id="address" rows="2" placeholder="Rua, número, bairro e cidade"></textarea><label for="payment">Forma de pagamento</label><select id="payment"><option>Pix (confirmar instruções com a loja)</option><option>Cartão — solicitar link de pagamento</option><option>Boleto — solicitar link de pagamento</option></select><button class="btn" onclick="sendOrder()">Enviar pedido pelo WhatsApp</button><p class="notice">Os produtos novos estão com preço sob consulta; o total será confirmado pela loja no WhatsApp. O site ainda não processa pagamentos nem confirma estoque automaticamente. Não informe dados de cartão neste site.</p></div>
 </aside></div>
+
+<div class="product-modal" id="productModal" onclick="if(event.target===this)closeProduct()">
+<div class="modal-card">
+<button class="modal-close" onclick="closeProduct()" aria-label="Fechar">×</button>
+<div class="gallery"><img class="gallery-main" id="galleryMain" src="" alt="Foto ilustrativa do produto"><div class="thumbs" id="galleryThumbs"></div></div>
+<div class="modal-info"><div class="eyebrow">Natal Encantado</div><h2 id="modalName"></h2><p id="modalDesc"></p><div class="modal-price" id="modalPrice"></div><div class="qty-row"><span>Quantidade:</span><button onclick="changeQty(-1)">−</button><span id="modalQty">1</span><button onclick="changeQty(1)">+</button></div><button class="btn" onclick="addFromModal()">Adicionar ao carrinho</button><p class="photo-note">Fotos meramente ilustrativas. Consulte a loja para confirmar modelo, medidas, cores e disponibilidade.</p></div>
+</div></div>
+
 <script>
 const products=[
-{id:1,name:"Árvore de Natal Decorada",desc:"Inspiração clássica em vermelho e dourado para sua decoração.",price:189.90,emoji:"🎄",tag:"Destaque",img:"https://images.unsplash.com/photo-1766006666411-a69c3229a4b1?auto=format&fit=crop&w=900&q=85"},
-{id:2,name:"Enfeites Natalinos Vermelho e Dourado",desc:"Detalhes brilhantes para deixar sua árvore ainda mais especial.",price:39.90,emoji:"🔴",tag:"Mais vendido",img:"https://images.pexels.com/photos/364667/pexels-photo-364667.jpeg?auto=compress&cs=tinysrgb&w=900"},
-{id:3,name:"Cordão de Luzes LED",desc:"Luz quentinha para criar um clima acolhedor no Natal.",price:29.90,emoji:"💡",tag:"Especial",img:"https://images.pexels.com/photos/799584/pexels-photo-799584.jpeg?auto=compress&cs=tinysrgb&w=900"},
-{id:4,name:"Guirlanda Natalina Vermelha e Dourada",desc:"Uma recepção encantadora para sua casa e seus convidados.",price:59.90,emoji:"🌟",tag:"Encantador",img:"https://images.pexels.com/photos/6218714/pexels-photo-6218714.jpeg?auto=compress&cs=tinysrgb&w=900"}
-];
-let cart=[];
-const money=n=>n.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
-function renderProducts(){document.getElementById("productGrid").innerHTML=products.map(p=>`<article class="product"><div class="product-art"><span class="tag">${p.tag}</span><img src="${p.img}" alt="${p.name} — foto ilustrativa" loading="lazy" onerror="this.style.display='none';this.parentElement.insertAdjacentText('beforeend','${p.emoji}')"></div><div class="product-info"><h3>${p.name}</h3><div class="desc">${p.desc}</div><div class="price">${money(p.price)}</div><button class="btn" onclick="add(${p.id})">Adicionar ao carrinho</button></div></article>`).join("")}
-function add(id){const item=cart.find(x=>x.id===id);if(item)item.qty++;else cart.push({...products.find(x=>x.id===id),qty:1});renderCart();openCart()}
-function removeItem(id){cart=cart.filter(x=>x.id!==id);renderCart()}
-function renderCart(){document.getElementById("count").textContent=cart.reduce((s,x)=>s+x.qty,0);document.getElementById("cartItems").innerHTML=cart.length?cart.map(x=>`<div class="cartline"><span>${x.emoji} ${x.name}<br>Qtd: ${x.qty} • ${money(x.price*x.qty)}</span><button onclick="removeItem(${x.id})">Remover</button></div>`).join(""):"<p>Seu carrinho está vazio. Escolha seus produtos favoritos!</p>";document.getElementById("total").textContent=money(cart.reduce((s,x)=>s+x.price*x.qty,0))}
-function openCart(){document.getElementById("overlay").classList.add("show")}
-function closeCart(){document.getElementById("overlay").classList.remove("show")}
-function sendOrder(){if(!cart.length){alert("Adicione pelo menos um produto ao carrinho.");return}const name=document.getElementById("customer").value.trim(),phone=document.getElementById("phone").value.trim(),address=document.getElementById("address").value.trim(),payment=document.getElementById("payment").value;if(!name||!phone||!address){alert("Preencha nome, telefone e endereço.");return}let lines=cart.map(x=>`- ${x.name} | ${x.qty} x ${money(x.price)} = ${money(x.price*x.qty)}`).join("%0A");let total=money(cart.reduce((s,x)=>s+x.price*x.qty,0));let msg=`Olá! Quero fazer um pedido na Natal Encantado.%0A%0ANome: ${encodeURIComponent(name)}%0ATelefone: ${encodeURIComponent(phone)}%0AEndereço: ${encodeURIComponent(address)}%0A%0AProdutos:%0A${lines}%0A%0ATotal: ${encodeURIComponent(total)}%0APagamento: ${encodeURIComponent(payment)}%0A%0APor favor, confirme disponibilidade e instruções para pagamento.`;window.open(`https://wa.me/5511947906480?text=${msg}`,"_blank")}
-document.getElementById("year").textContent=new Date().getFullYear();renderProducts();renderCart();
-</script>
-</body></html>
+{id:1,name:"Árvore de Natal Decorada",desc:"Inspiração clássica em vermelho e dourado para transformar sua sala em um ambiente acolhedor. Consulte a loja para confirmar altura, quantidade de galhos e itens que acompanham o modelo.",price:189.90,emoji:"🎄",tag:"Destaque",images:[
+"https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=1100&q=85",
+"https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1100&q=85",
+"https://images.unsplash.com/photo-1512909006721-3d6018887385?auto=format&fit=crop&w=1100&q=85"]},
+{id:2,name:"Enfeites Natalinos Vermelho e Dourado",desc:"Bolas e detalhes decorativos para dar brilho e personalidade à árvore de Natal. Consulte as opções de cores, tamanhos e quantidade por embalagem.",price:39.90,emoji:"🔴",tag:"Mais vendido",images:[
+"https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1100&q=85",
+"https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=1100&q=85",
+"https://images.unsplash.com/photo-1512909006721-3d6018887385?auto=format&fit=crop&w=1100&q=85"]},
+{id:3,name:"Cordão de Luzes LED",desc:"Iluminação decorativa para árvores, guirlandas e ambientes internos. Crie um clima natalino aconchegante. Confirme comprimento, cor da luz e alimentação com a loja.",price:29.90,emoji:"💡",tag:"Especial",images:[
+"https://images.unsplash.com/photo-1512909006721-3d6018887385?auto=format&fit=crop&w=1100&q=85",
+"https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=1100&q=85",
+"https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1100&q=85"]},
+{id:4,name:"Guirlanda Natalina Vermelha e Dourada",desc:"Um detalhe especial para decorar portas e receber suas visitas com o encanto do Natal. Consulte o diâmetro, os materiais e as cores disponíveis.",price:59.90,emoji:"🌟",tag:"Encantador",images:[
+"https://images.unsplash.com/photo-1576919228236-a097c32a5cd4?auto=format&fit=crop&w=1100&q=85",
+"https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1100&q=85",
+"https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=1100&q=85"]},
+{id:5,name:"Árvore de Natal 1,50 m",desc:"Árvore tradicional para salas e espaços compactos. Consulte altura, número de galhos, cor e disponibilidade.",price:null,emoji:"🎄",tag:"Queridinho",images:["https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1100&q=85","https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=1100&q=85","https://images.unsplash.com/photo-1512909006721-3d6018887385?auto=format&fit=crop&w=1100&q=85"]},
+{id:6,name:"Árvore de Natal 1,80 m",desc:"Modelo de tamanho intermediário para criar um destaque especial na decoração. Consulte modelo e disponibilidade.",price:null,emoji:"🎄",tag:"Mais procurado",images:["https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=1100&q=85","https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1100&q=85","https://images.unsplash.com/photo-1512909006721-3d6018887385?auto=format&fit=crop&w=1100&q=85"]},
+{id:7,name:"Árvore de Natal 2,10 m ou maior",desc:"Opção imponente para ambientes amplos e decorações completas. Consulte tamanhos, galhos e disponibilidade.",price:null,emoji:"🎄",tag:"Especial",images:["https://images.unsplash.com/photo-1512909006721-3d6018887385?auto=format&fit=crop&w=1100&q=85","https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=1100&q=85","https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1100&q=85"]},
+{id:8,name:"Festão Natalino Verde",desc:"Festão decorativo para contornar árvores, portas, escadas e aparadores. Consulte comprimento e volume dos galhos.",price:null,emoji:"🌲",tag:"Decoração",images:["https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1100&q=85","https://images.unsplash.com/photo-1576919228236-a097c32a5cd4?auto=format&fit=crop&w=1100&q=85","https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=1100&q=85"]},
+{id:9,name:"Kit de Bolas de Natal",desc:"Conjunto de bolas decorativas para compor uma árvore harmoniosa. Consulte quantidade, diâmetro e cores disponíveis.",price:null,emoji:"🔴",tag:"Mais procurado",images:["https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1100&q=85","https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=1100&q=85","https://images.unsplash.com/photo-1512909006721-3d6018887385?auto=format&fit=crop&w=1100&q=85"]},
+{id:10,name:"Laços e Flores para Árvore",desc:"Laços, flores e picks decorativos para dar volume e acabamento à árvore. Consulte cores e quantidade por kit.",price:null,emoji:"🎀",tag:"Detalhes",images:["https://images.unsplash.com/photo-1576919228236-a097c32a5cd4?auto=format&fit=crop&w=1100&q=85","https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1100&q=85","https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=1100&q=85"]},
+{id:11,name:"Ponteira de Árvore",desc:"Estrela e outros acabamentos para completar o topo da árvore. Consulte formatos, materiais e cores.",price:null,emoji:"⭐",tag:"Clássico",images:["https://images.unsplash.com/photo-1512909006721-3d6018887385?auto=format&fit=crop&w=1100&q=85","https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=1100&q=85","https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1100&q=85"]},
+{id:12,name:"Pisca-Pisca LED 100 Lâmpadas",desc:"Cordão de luzes para árvores e ambientes internos. Antes da compra, confirme comprimento, cor da luz e voltagem.",price:null,emoji:"💡",tag:"Mais procurado",images:["https://images.unsplash.com/photo-1512909006721-3d6018887385?auto=format&fit=crop&w=1100&q=85","https://images.unsplash.com/photo-1543589077-47d81606c1bf?auto=format&fit=crop&w=1100&q=85","https://images.unsplash.com/photo-1512389142860-9c449e58a543?auto=format&fit=crop&w=1100&q=85"]},
+{id:13,name:"Cortina de Luz LED",desc:"Iluminação e
