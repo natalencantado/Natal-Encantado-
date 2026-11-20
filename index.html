@@ -15,12 +15,42 @@
 <section class="section" id="acessorios"><h2>Enfeites e acessórios de Natal</h2><p class="sub">Complete sua decoração com artigos natalinos.</p><div class="grid" id="accessories"></div></section>
 <section class="section" style="background:#f7f5ec"><h2>Como comprar</h2><div class="steps"><div class="step"><b>1. Escolha seus produtos</b>Veja fotos e preços e adicione ao carrinho.</div><div class="step"><b>2. Informe a entrega</b>Preencha nome, telefone e endereço.</div><div class="step"><b>3. Faça o PIX</b>Copie a chave PIX e pague no aplicativo do seu banco.</div><div class="step"><b>4. Confirme o pedido</b>Envie o pedido e o comprovante pelo WhatsApp.</div></div><p class="sub">A entrega e o prazo são combinados pelo WhatsApp antes da confirmação.</p></section>
 <footer><b>NATAL ENCANTADO</b><p>Árvores e Decorações</p><p>Atendimento: (11) 94790-6480</p><small>Boas festas! ✨</small></footer>
-<div class="modal" id="modal" onclick="if(event.target===this)closeCart()"><div class="panel"><button class="close" onclick="closeCart()">Fechar ✕</button><h2>Seu carrinho</h2><div id="cartlines"></div><p class="total"><b>Total: <span id="total">R$ 0,00</span></b></p><h3>Dados para entrega</h3><label>Nome completo</label><input id="customer" autocomplete="name" placeholder="Seu nome"><label>WhatsApp</label><input id="phone" inputmode="tel" placeholder="(DDD) 99999-9999"><label>Endereço completo</label><textarea id="address" rows="2" autocomplete="street-address" placeholder="Rua, número, bairro, cidade e CEP"></textarea><label>Observações (opcional)</label><input id="notes" placeholder="Ex.: casa com portão azul"><h3>Pagamento via PIX</h3><div class="pix"><b>Chave PIX (aleatória):</b><br><span id="pixkey">fb8b6e0e-93f6-43ef-bd9d-c9f99582504f</span><br><button onclick="copyPix()" style="background:var(--gold);margin-top:10px">Copiar chave PIX</button></div><p class="muted">PIX manual: confira o nome do recebedor no banco e confirme valor, frete e disponibilidade com a loja. O site não confirma pagamentos automaticamente.</p><button class="whats" onclick="payPix()">Copiar PIX e enviar pedido</button><button onclick="sendOrder('WhatsApp')" style="width:100%;background:#14532d;color:white;margin-top:9px">Finalizar pelo WhatsApp</button></div></div>
+<div class="modal" id="modal" onclick="if(event.target===this)closeCart()"><div class="panel"><button class="close" onclick="closeCart()">Fechar ✕</button><h2>Seu carrinho</h2><div id="cartlines"></div><p class="total"><b>Total: <span id="total">R$ 0,00</span></b></p><h3>Dados para entrega</h3><label>Nome completo</label><input id="customer" autocomplete="name" placeholder="Seu nome"><label>WhatsApp</label><input id="phone" inputmode="tel" placeholder="(DDD) 99999-9999"><label>Endereço completo</label><textarea id="address" rows="2" autocomplete="street-address" placeholder="Rua, número, bairro, cidade e CEP"></textarea><label>Observações (opcional)</label><input id="notes" placeholder="Ex.: casa com portão </button></div></div>
 <script>
 const WHATS='5511947906480'; const PIX='fb8b6e0e-93f6-43ef-bd9d-c9f99582504f';
 const products=[
 {name:'Árvore de Natal — 60 cm',desc:'Compacta para mesas, aparadores e pequenos ambientes.',price:34.90,tag:'Oferta econômica',group:'tree',img:'arvore-60.jpg'},
 {name:'Árvore de Natal — 90 cm',desc:'Um toque natalino para espaços menores.',price:49.90,tag:'Preço especial',group:'tree',img:'arvore-90.jpg'},
+<h3>Escolha a forma de pagamento</h3>
+
+<label>
+  <input type="radio" name="payment" value="PIX" checked style="width:auto">
+  ✅PIX
+</label>
+
+<label>
+  <input type="radio" name="payment" value="Cartão de crédito" style="width:auto">
+  💳 Cartão de crédito
+</label>
+
+<label>
+  <input type="radio" name="payment" value="Boleto bancário" style="width:auto">
+  📄 Boleto bancário
+</label>
+
+<div class="pix">
+  <b>Chave PIX:</b><br>
+  <span id="pixkey">fb8b6e0e-93f6-43ef-bd9d-c9f99582504f</span>
+  <br>
+  <button onclick="copyPix()">Copiar chave PIX</button>
+  <p class="muted">Pagamento manual. Confira o recebedor no banco.</p>
+</div>
+
+<button class="whats" onclick="finishPayment()">
+  Continuar para pagamento
+</button>
+</div></div>
+
 {name:'Árvore de Natal — 1,20 m',desc:'Ideal para salas compactas e apartamentos.',price:79.90,tag:'Mais procurada',group:'tree',img:'arvore-120.jpg'},
 {name:'Árvore de Natal — 1,50 m',desc:'Tamanho versátil para decorar sua casa.',price:119.90,tag:'Oferta especial',group:'tree',img:'arvore-150.jpg'},
 {name:'Árvore de Natal — 1,80 m',desc:'Destaque para sua sala e decoração natalina.',price:179.90,tag:'Destaque',group:'tree',img:'arvore-180.jpg'},
